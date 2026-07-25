@@ -9,34 +9,38 @@ import { useAthleteGuard } from "@/lib/useAthleteGuard";
 // Supabase write. Guarded client-side via useAthleteGuard (same pattern as
 // every protocol page): no athlete on this device → bounce to the landing.
 //
-// Body copy is reproduced verbatim from david-factor.md (repo root), beginning
-// at the source's second line ("Introduction"); the source's first line is the
-// title, rendered as HEADING below. Do not reword, condense, or re-punctuate.
-// The four "* " lines are the source's bulleted list.
+// Body copy is reproduced verbatim from david-factor-athlete.md (repo root).
+// "Introduction" is the eyebrow label (retained from the layout); the athlete
+// source begins at the next line. The HEADING below is unchanged. Do not
+// reword, condense, or re-punctuate. The four "* " lines are the bulleted list.
 const HEADING = "The David vs Goliath Shepherd Mental Edge Factor!";
 
 const BODY: string[] = [
   "Introduction",
-  "Long before the story of David and Goliath, there is an even more important narrative unfolding in the life of David- the story of David in the wilderness.",
+  "Long before the story of David and Goliath, there is an even more important narrative unfolding in the life of David. The story of David in the wilderness.",
   "Years before David ever stepped into the spotlight, he was faithful in obscurity, training his mind, body, and spirit for the battles he would later face. While tending his father's sheep, far from the crowd and far from recognition, David was doing the unseen work. Fighting lions and bears that no one witnessed (1 Samuel 17:34-36). Developing unseen habits, disciplines, and a mindset that would later separate him from everyone else in that valley. His preparation was quiet, unglamorous, but deeply intentional.",
   "And when the moment came, he was ready.",
-  "In the heat of battle, the army of Israel looked at the size of the opposition and panicked under pressure. David looked at the same giant and stepped forward. The difference wasn't size, strength, or skill. It was a mindset. Despite the paralyzing pressure of the opponent in front of him, David stayed laser focused on the size of “his God”. That focus gave him a deep, inner confidence and composure to face “his giant” and come out victorious on the other side.",
-  "He didn't show up with armor or a sword.  His weapon was a stone. Small. Simple. But in the hands of someone who had done the unseen work, it was enough to give him the edge.",
+  "In the heat of battle, the army of Israel looked at the size of the opposition and panicked under pressure. David looked at the same giant and stepped forward. The difference wasn't size, strength, or skill – it was mindset. Despite the paralyzing pressure of the opponent in front of him, David stayed laser focused on the size of his God. That focus gave him a deep, inner confidence and composure to face his giant and come out victorious on the other side.",
+  "He didn't show up with armor or a sword. His weapon was a stone. Small. Simple. But in the hands of someone who had done the unseen work, it was enough to give him the edge.",
   "That is The DAVID Factor.",
-  "The David Factor-the spiritual and mental edge-isn't built in the spotlight. It's built in the small, daily behaviors that most athletes overlook.  Small habits. Small mindset shifts. Small, intentional choices made consistently over time. That's what separates the athlete who crumbles under pressure from the one who rises to meet it.",
-  "As a coach, you see it every day: pressure, distractions, mistakes, setbacks, and emotions are part of the game. The athletes who perform consistently aren't the ones who avoid these challenges. They're the ones who learn how to handle them. And that starts with coaching.",
-  "Mental Performance isn't about creating perfect athletes or eliminating nerves. It's about teaching the small, practical skills that help athletes reset faster, stay focused, build confidence, and respond better when things don't go their way. Just like strength, speed, or technique, mental skills improve with practice. Confidence can be trained. Focus can be trained. Responses to pressure and mistakes can be trained when coaches intentionally teach them.",
-  "As Shepherd Coaches, we believe the mental game goes far deeper than performance. Scripture is filled with principles of mindset, perseverance, self-talk, courage, joy, and self-control. These are the very qualities that defined David and the very qualities that define mentally strong athletes today.",
-  "When you commit to teaching these skills, you will help your athletes learn how to:",
+  "And here's what that means for you.",
+  "Your mental edge isn't built in the spotlight. It's built in the small, daily behaviors that most athletes overlook. Small habits. Small mindset shifts. Small, intentional choices made consistently over time. That's what separates the athlete who crumbles under pressure from the one who rises to meet it.",
+  "That's what this manual is for.",
+  "As an athlete, you face your own goliaths every single day. Distractions, mistakes, setbacks, nerves before a big game, the voice in your head after a bad play. These are not signs that something is wrong with you. They are part of competing. The athletes who perform consistently aren't the ones who avoid these challenges. They're the ones who learn how to handle them.",
+  "Mental performance isn't about being perfect or never feeling nervous. It's about developing the small, practical tools that help you reset faster, stay focused, build confidence, and respond better when things don't go your way. Just like speed, strength, or technique, mental skills like confidence, composure, focus, and resilience can also be trained.",
+  "As a Shepherd athlete, we believe your mental game goes far deeper than performance. Scripture is filled with principles of mindset, perseverance, self-talk, courage, joy, and self-control. These are the very qualities that defined David and the very qualities that define mentally strong athletes today. This manual brings those principles into your daily training and competition.",
+  "The DAVID Factor gives you 12 core mental skills, one for each week of your season. Each chapter is short, clear, and built for real practices and real competition. When you commit to working through these skills, you will learn how to:",
   "* Compete with confidence, composure, and consistency",
   "* Handle pressure and mistakes more effectively",
   "* Bounce back when things get hard",
   "* Play with greater freedom and enjoyment",
-  "The best part? These skills don't just impact performance. They carry over into school, relationships, and life. And for the Christian athlete, every skill points back to the One who made them, equipped them, and called them to compete.",
-  "Wherever you are in your coaching journey, God has placed you at this school for a reason. To care for the flock He has entrusted to you.",
-  "It's time to help your athletes unlock their spiritual growth and their mental edge.",
-  "It's time to face their giants.",
-  "It's time to develop the DAVID Factor!",
+  "The best part? These skills don't just impact your performance. They carry over into school, relationships, and every area of your life. And every skill in this manual points back to the One who made you, equipped you, and called you to compete.",
+  "You have giants in front of you. Pressure. Doubt. Fear. Opponents. Moments that feel bigger than you.",
+  "David faced his giant and won – not because he was the most physically gifted or talented.  David overcame because he had done the unseen work of learning to trust God and stay focused on Him at all times (Psalm 16:8), giving him an edge when it mattered most.",
+  "Now it's your turn.",
+  "It's time to unlock your spiritual growth and your mental edge.",
+  "It's time to face your giants.",
+  "It's time to develop your DAVID Factor.",
 ];
 
 type Block = { type: "p"; text: string } | { type: "ul"; items: string[] };
