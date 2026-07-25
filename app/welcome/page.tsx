@@ -13,7 +13,7 @@ import { useAthleteGuard } from "@/lib/useAthleteGuard";
 // "Introduction" is the eyebrow label (retained from the layout); the athlete
 // source begins at the next line. The HEADING below is unchanged. Do not
 // reword, condense, or re-punctuate. The four "* " lines are the bulleted list.
-const HEADING = "The David vs Goliath Shepherd Mental Edge Factor!";
+const HEADING = "Overcoming Your Goliaths";
 
 const BODY: string[] = [
   "Introduction",

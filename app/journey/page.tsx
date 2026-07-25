@@ -102,7 +102,7 @@ export default function JourneyPage() {
                 Start Here
               </p>
               <p style={{ fontSize: 12.5, color: "var(--muted)", marginTop: 3, lineHeight: 1.3 }}>
-                The David vs Goliath Shepherd Mental Edge Factor
+                “Overcoming Your Goliaths”
               </p>
               <span
                 className="font-head"
