@@ -32,7 +32,9 @@ export default function JourneyPage() {
     );
   }
 
-  const doneCount = completed.length;
+  // Count only completions for currently-visible protocols, so stale saves from
+  // hidden/old-numbered protocols can't push the counter past PROTOCOLS.length.
+  const doneCount = completed.filter((n) => PROTOCOLS.some((p) => p.number === n)).length;
   const firstName = athlete.full_name.split(" ")[0];
 
   return (
