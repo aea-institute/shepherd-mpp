@@ -84,7 +84,7 @@ export default function NonNegotiablesPage() {
     }
     setSaving(true);
     setSaveError("");
-    const ok = await saveResponse(4, "non-negotiables", { non_negotiables: chosen });
+    const ok = await saveResponse(3, "non-negotiables", { non_negotiables: chosen });
     setSaving(false);
     if (!ok) {
       setSaveError(SAVE_ERROR);
@@ -97,7 +97,7 @@ export default function NonNegotiablesPage() {
   return (
     <main className="screen flex flex-col min-h-screen pb-10">
       <StepHeader
-        eyebrow="Protocol 4 · Non-Negotiables"
+        eyebrow="Protocol 3 · Non-Negotiables"
         step={step}
         total={TOTAL}
         backToJourney={step === 1}

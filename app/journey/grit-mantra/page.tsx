@@ -40,7 +40,7 @@ export default function GritMantraPage() {
     }
     setSaving(true);
     setSaveError("");
-    const ok = await saveResponse(9, "grit-mantra", {
+    const ok = await saveResponse(6, "grit-mantra", {
       challenge: challenge.trim(),
       mantra: mantra.trim(),
       meaning: meaning.trim(),
@@ -70,7 +70,7 @@ export default function GritMantraPage() {
   return (
     <main className="screen flex flex-col min-h-screen pb-10">
       <StepHeader
-        eyebrow="Protocol 9 · Grit Mantra"
+        eyebrow="Protocol 6 · Grit Mantra"
         step={step}
         total={TOTAL}
         backToJourney={step === 1}

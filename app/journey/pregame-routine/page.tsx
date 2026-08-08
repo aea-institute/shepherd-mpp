@@ -41,7 +41,7 @@ export default function PregameRoutinePage() {
     }
     setSaving(true);
     setSaveError("");
-    const ok = await saveResponse(10, "pregame-routine", {
+    const ok = await saveResponse(7, "pregame-routine", {
       objective: objective.trim(),
       approach: approach.trim(),
       mental_prep: mentalPrep.trim(),
@@ -74,7 +74,7 @@ export default function PregameRoutinePage() {
   return (
     <main className="screen flex flex-col min-h-screen pb-10">
       <StepHeader
-        eyebrow="Protocol 10 · Pre-Game Routine"
+        eyebrow="Protocol 7 · Pre-Game Routine"
         step={step}
         total={TOTAL}
         backToJourney={step === 1}

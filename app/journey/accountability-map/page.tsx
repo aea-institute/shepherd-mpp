@@ -59,7 +59,7 @@ export default function AccountabilityMapPage() {
     namedPeople.forEach((x) => {
       trimmedSupport[x.name] = support[x.i].trim();
     });
-    const ok = await saveResponse(7, "accountability-map", {
+    const ok = await saveResponse(5, "accountability-map", {
       people,
       support: trimmedSupport,
       promise: promise.trim(),
@@ -77,7 +77,7 @@ export default function AccountabilityMapPage() {
   return (
     <main className="screen flex flex-col min-h-screen pb-10">
       <StepHeader
-        eyebrow="Protocol 7 · Accountability Map"
+        eyebrow="Protocol 5 · Accountability Map"
         step={step}
         total={TOTAL}
         backToJourney={step === 1}

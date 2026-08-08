@@ -58,7 +58,7 @@ export default function WhatINeedWhatIGivePage() {
     }
     setSaving(true);
     setSaveError("");
-    const ok = await saveResponse(6, "what-i-need-what-i-give", {
+    const ok = await saveResponse(4, "what-i-need-what-i-give", {
       needs: trimmedNeeds as [string, string, string],
       gives: trimmedGives as [string, string, string],
       commitment: commitment.trim(),
@@ -88,7 +88,7 @@ export default function WhatINeedWhatIGivePage() {
   return (
     <main className="screen flex flex-col min-h-screen pb-10">
       <StepHeader
-        eyebrow="Protocol 6 · Need & Give"
+        eyebrow="Protocol 4 · Need & Give"
         step={step}
         total={TOTAL}
         backToJourney={step === 1}

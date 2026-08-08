@@ -53,7 +53,7 @@ export default function ResetPage() {
     }
     setSaving(true);
     setSaveError("");
-    const ok = await saveResponse(3, "reset", {
+    const ok = await saveResponse(2, "reset", {
       physical_action: physicalFinal,
       breath_work: breath,
       mantra: mantra.trim(),
@@ -82,7 +82,7 @@ export default function ResetPage() {
   return (
     <main className="screen flex flex-col min-h-screen pb-10">
       <StepHeader
-        eyebrow="Protocol 3 · Reset"
+        eyebrow="Protocol 2 · Reset"
         step={step}
         total={TOTAL}
         backToJourney={step === 1}
