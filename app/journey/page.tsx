@@ -7,6 +7,7 @@ import Wordmark from "@/components/Wordmark";
 import { PROTOCOLS, ACCENT_HEX, COMPLETE_HEX } from "@/lib/protocols";
 import { getCompleted, clearAthlete } from "@/lib/athlete";
 import { useAthleteGuard } from "@/lib/useAthleteGuard";
+import { DASHBOARD_URL } from "@/lib/dashboard";
 
 export default function JourneyPage() {
   // useAthleteGuard handles the Shepherd Mental Edge handoff token (?sme=) as
@@ -37,23 +38,38 @@ export default function JourneyPage() {
     <main className="screen flex flex-col min-h-screen pb-12">
       <header className="pt-8 flex items-center justify-between">
         <Wordmark size={54} />
-        <button
-          onClick={() => {
-            clearAthlete();
-            router.replace("/");
-          }}
-          className="font-head"
-          style={{
-            background: "none",
-            border: "none",
-            color: "var(--muted)",
-            fontSize: 12,
-            cursor: "pointer",
-            letterSpacing: "0.04em",
-          }}
-        >
-          Sign out
-        </button>
+        <div className="flex items-center" style={{ gap: 16 }}>
+          <a
+            href={DASHBOARD_URL}
+            className="font-head"
+            style={{
+              color: "var(--gold)",
+              fontSize: 12,
+              textDecoration: "none",
+              letterSpacing: "0.04em",
+              whiteSpace: "nowrap",
+            }}
+          >
+            ← Dashboard
+          </a>
+          <button
+            onClick={() => {
+              clearAthlete();
+              router.replace("/");
+            }}
+            className="font-head"
+            style={{
+              background: "none",
+              border: "none",
+              color: "var(--muted)",
+              fontSize: 12,
+              cursor: "pointer",
+              letterSpacing: "0.04em",
+            }}
+          >
+            Sign out
+          </button>
+        </div>
       </header>
 
       <section className="mt-9">

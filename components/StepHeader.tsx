@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { DASHBOARD_URL } from "@/lib/dashboard";
 
 type Props = {
   eyebrow: string;
@@ -25,6 +26,20 @@ export default function StepHeader({ eyebrow, step, total, onBack, backToJourney
 
   return (
     <div className="pt-7 pb-5">
+      <a
+        href={DASHBOARD_URL}
+        className="font-head"
+        style={{
+          display: "inline-block",
+          color: "var(--gold)",
+          fontSize: 12,
+          textDecoration: "none",
+          letterSpacing: "0.04em",
+          marginBottom: 12,
+        }}
+      >
+        ← Dashboard
+      </a>
       <div className="flex items-center justify-between mb-4">
         <button
           onClick={handleBack}
