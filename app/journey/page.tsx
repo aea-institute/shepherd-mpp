@@ -5,24 +5,20 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Wordmark from "@/components/Wordmark";
 import { PROTOCOLS, ACCENT_HEX, COMPLETE_HEX } from "@/lib/protocols";
-import { getAthlete, getCompleted, clearAthlete, type Athlete } from "@/lib/athlete";
+import { getCompleted, clearAthlete } from "@/lib/athlete";
+import { useAthleteGuard } from "@/lib/useAthleteGuard";
 
 export default function JourneyPage() {
+  // useAthleteGuard handles the Shepherd Mental Edge handoff token (?sme=) as
+  // well as an existing session, so a deep link straight to /journey signs the
+  // athlete in instead of bouncing them to the welcome form.
   const router = useRouter();
-  const [athlete, setAth] = useState<Athlete | null>(null);
+  const { athlete, ready } = useAthleteGuard();
   const [completed, setCompleted] = useState<number[]>([]);
-  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const a = getAthlete();
-    if (!a) {
-      router.replace("/");
-      return;
-    }
-    setAth(a);
-    setCompleted(getCompleted());
-    setReady(true);
-  }, [router]);
+    if (ready) setCompleted(getCompleted());
+  }, [ready]);
 
   if (!ready || !athlete) {
     return (
