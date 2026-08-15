@@ -1,17 +1,47 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Wordmark from "@/components/Wordmark";
 import WelcomeForm from "@/components/WelcomeForm";
-import { getAthlete } from "@/lib/athlete";
+import { getAthlete, setAthlete, setCompleted } from "@/lib/athlete";
 
 export default function LandingPage() {
   const router = useRouter();
+  // Hold the welcome form back until we know whether this athlete is already
+  // signed in or arrived with a handoff token.
+  const [booting, setBooting] = useState(true);
 
-  // If already signed in on this device, skip straight to the journey.
   useEffect(() => {
-    if (getAthlete()) router.replace("/journey");
+    // Already signed in on this device? Skip straight to the journey.
+    if (getAthlete()) {
+      router.replace("/journey");
+      return;
+    }
+
+    // Arrived from Shepherd Mental Edge with a signed identity? Sign in silently.
+    const token = new URLSearchParams(window.location.search).get("sme");
+    if (!token) {
+      setBooting(false);
+      return;
+    }
+
+    fetch("/api/handoff", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token }),
+    })
+      .then(async (res) => {
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+        setAthlete(data.athlete);
+        setCompleted(data.completed || []);
+        router.replace("/journey");
+      })
+      .catch(() => {
+        // Expired or misconfigured — fall back to the welcome form.
+        setBooting(false);
+      });
   }, [router]);
 
   return (
@@ -52,13 +82,21 @@ export default function LandingPage() {
       </section>
 
       <section className="card mt-10 p-6">
-        <p
-          className="font-head"
-          style={{ fontSize: 13, fontWeight: 700, color: "var(--cream)", marginBottom: 16 }}
-        >
-          Enter your details to begin.
-        </p>
-        <WelcomeForm />
+        {booting ? (
+          <p style={{ fontSize: 14, color: "var(--muted)", textAlign: "center" }}>
+            Signing you in…
+          </p>
+        ) : (
+          <>
+            <p
+              className="font-head"
+              style={{ fontSize: 13, fontWeight: 700, color: "var(--cream)", marginBottom: 16 }}
+            >
+              Enter your details to begin.
+            </p>
+            <WelcomeForm />
+          </>
+        )}
       </section>
 
       <p
