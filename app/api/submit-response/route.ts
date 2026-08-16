@@ -1,6 +1,9 @@
 export const dynamic = "force-dynamic";
 
 import { NextRequest, NextResponse } from "next/server";
+import { createHandoffToken } from "@/lib/handoff";
+import { DASHBOARD_URL } from "@/lib/dashboard";
+import { getProtocol } from "@/lib/protocols";
 
 // Store a single protocol's responses. One row per attempt.
 export async function POST(req: NextRequest) {
@@ -21,10 +24,10 @@ export async function POST(req: NextRequest) {
 
     const supabase = createServiceClient();
 
-    // Verify the athlete exists
+    // Verify the athlete exists (and pull identity for the dashboard report).
     const { data: athlete, error: athleteErr } = await supabase
       .from("athletes")
-      .select("id")
+      .select("id, email, full_name, team_name")
       .eq("id", athlete_id)
       .single();
 
@@ -40,6 +43,33 @@ export async function POST(req: NextRequest) {
     });
 
     if (insertErr) throw insertErr;
+
+    // Report the completion to the main app's coach dashboard — best effort.
+    // Reuses the shared handoff secret (no new env). Sends only WHICH protocol
+    // was completed, never the athlete's answers. Never blocks the athlete.
+    try {
+      const token = athlete.email
+        ? createHandoffToken({
+            n: athlete.full_name ?? "",
+            e: athlete.email,
+            t: athlete.team_name ?? null,
+            s: null,
+          })
+        : null;
+      if (token) {
+        await fetch(`${DASHBOARD_URL}/api/mpp-completion`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            token,
+            protocol_slug,
+            protocol_title: getProtocol(protocol_slug)?.title ?? null,
+          }),
+        });
+      }
+    } catch (reportErr) {
+      console.error("mpp-completion report failed (non-fatal):", reportErr);
+    }
 
     return NextResponse.json({ success: true });
   } catch (err) {
